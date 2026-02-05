@@ -5,6 +5,7 @@ on:
             - main
         paths-ignore:
             - "**/*.md"
+            - ".vscode/**"
 
 jobs:
     build_and_upload_artifacts:
