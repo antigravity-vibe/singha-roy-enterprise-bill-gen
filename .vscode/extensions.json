@@ -6,6 +6,7 @@
         "redhat.vscode-yaml",
         "vscodevim.vim",
         "Catppuccin.catppuccin-vsc",
-        "Catppuccin.catppuccin-vsc-icons"
+        "Catppuccin.catppuccin-vsc-icons",
+        "bradlc.vscode-tailwindcss"
     ]
 }

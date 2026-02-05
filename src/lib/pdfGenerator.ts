@@ -8,6 +8,11 @@ import { formatAmountInWords } from "./numberToWords";
 pdfMake.vfs = pdfFonts.vfs;
 
 /**
+ * Field error type for validation
+ */
+export type FieldErrors = Record<string, string>;
+
+/**
  * Format a date to DD-MM-YYYY format for the PDF
  */
 function formatDate(date: Date): string {
@@ -291,32 +296,33 @@ export function generatePDF(billData: BillData): void {
 
 /**
  * Validate bill data before generating PDF
+ * Returns a FieldErrors object mapping field names to error messages
  */
-export function validateBillData(billData: BillData): string[] {
-    const errors: string[] = [];
+export function validateBillData(billData: BillData): FieldErrors {
+    const errors: FieldErrors = {};
 
     if (!billData.invoiceNumber.trim()) {
-        errors.push("Invoice number is required");
+        errors.invoiceNumber = "Invoice number is required";
     }
 
     if (!billData.customerDetails.name.trim()) {
-        errors.push("Customer name is required");
+        errors.customerName = "Customer name is required";
     }
 
     if (!billData.customerDetails.address.line1.trim()) {
-        errors.push("Customer address line 1 is required");
+        errors.customerAddress1 = "Address line 1 is required";
     }
 
     if (!billData.customerDetails.address.city.trim()) {
-        errors.push("Customer city is required");
+        errors.customerCity = "City is required";
     }
 
     if (!billData.customerDetails.address.pin.trim()) {
-        errors.push("Customer PIN code is required");
+        errors.customerPin = "PIN code is required";
     }
 
     if (!billData.customerDetails.address.state.trim()) {
-        errors.push("Customer state is required");
+        errors.customerState = "State is required";
     }
 
     // Check if there's at least one item with data
@@ -325,8 +331,15 @@ export function validateBillData(billData: BillData): string[] {
     );
 
     if (!hasItems) {
-        errors.push("At least one bill item is required");
+        errors.billItems = "At least one bill item is required";
     }
 
     return errors;
+}
+
+/**
+ * Check if there are any validation errors
+ */
+export function hasErrors(errors: FieldErrors): boolean {
+    return Object.keys(errors).length > 0;
 }

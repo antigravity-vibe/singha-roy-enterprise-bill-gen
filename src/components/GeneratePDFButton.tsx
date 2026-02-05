@@ -1,65 +1,48 @@
 import { useState } from "react";
 import type { BillData } from "../types/bill";
-import { generatePDF, validateBillData } from "../lib/pdfGenerator";
+import { generatePDF, validateBillData, hasErrors, type FieldErrors } from "../lib/pdfGenerator";
 import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
 
 interface GeneratePDFButtonProps {
     billData: BillData;
+    onValidationErrors: (errors: FieldErrors) => void;
 }
 
 /**
  * Button that validates bill data and generates PDF invoice
  */
-export function GeneratePDFButton({ billData }: GeneratePDFButtonProps) {
-    const [errors, setErrors] = useState<string[]>([]);
+export function GeneratePDFButton({ billData, onValidationErrors }: GeneratePDFButtonProps) {
     const [isGenerating, setIsGenerating] = useState(false);
 
     const handleGeneratePDF = () => {
         // Validate the bill data
         const validationErrors = validateBillData(billData);
 
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
+        if (hasErrors(validationErrors)) {
+            onValidationErrors(validationErrors);
             return;
         }
 
-        setErrors([]);
+        onValidationErrors({});
         setIsGenerating(true);
 
         try {
             generatePDF(billData);
         } catch (error) {
             console.error("Error generating PDF:", error);
-            setErrors(["An error occurred while generating the PDF. Please try again."]);
         } finally {
             setIsGenerating(false);
         }
     };
 
     return (
-        <div className="space-y-4">
-            {errors.length > 0 && (
-                <Card className="border-red-200 bg-red-50">
-                    <CardContent className="pt-4">
-                        <p className="font-medium text-red-800 mb-2">Please fix the following errors:</p>
-                        <ul className="list-disc list-inside text-red-700 text-sm space-y-1">
-                            {errors.map((error, index) => (
-                                <li key={index}>{error}</li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                </Card>
-            )}
-
-            <Button
-                onClick={handleGeneratePDF}
-                disabled={isGenerating}
-                size="lg"
-                className="w-full py-6 text-lg font-semibold"
-            >
-                {isGenerating ? "Generating PDF..." : "Generate Invoice PDF"}
-            </Button>
-        </div>
+        <Button
+            onClick={handleGeneratePDF}
+            disabled={isGenerating}
+            size="lg"
+            className="w-full py-6 text-lg font-semibold"
+        >
+            {isGenerating ? "Generating PDF..." : "Generate Invoice PDF"}
+        </Button>
     );
 }

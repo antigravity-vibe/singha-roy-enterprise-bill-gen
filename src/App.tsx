@@ -9,6 +9,7 @@ import { InvoiceHeader, getTodayDateString } from "./components/InvoiceHeader";
 import { BillTable, createEmptyItem } from "./components/BillTable";
 import { BillSummary } from "./components/BillSummary";
 import { GeneratePDFButton } from "./components/GeneratePDFButton";
+import type { FieldErrors } from "./lib/pdfGenerator";
 import "./App.css";
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
 
     // Bill items
     const [items, setItems] = useState<BillItem[]>([createEmptyItem()]);
+
+    // Validation errors
+    const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
     // Calculate all derived values
     const { calculatedItems, totals } = useBillCalculations(items);
@@ -41,6 +45,42 @@ function App() {
         [invoiceNumber, dateString, businessDetails, customerDetails, calculatedItems, totals],
     );
 
+    const handleInvoiceNumberChange = (value: string) => {
+        setInvoiceNumber(value);
+        if (fieldErrors.invoiceNumber) {
+            setFieldErrors((prev) => {
+                const { invoiceNumber: _removed, ...rest } = prev;
+                void _removed;
+                return rest;
+            });
+        }
+    };
+
+    const handleCustomerDetailsChange = (details: CustomerDetails) => {
+        setCustomerDetails(details);
+        // Clear relevant customer errors
+        setFieldErrors((prev) => {
+            const newErrors = { ...prev };
+            delete newErrors.customerName;
+            delete newErrors.customerAddress1;
+            delete newErrors.customerCity;
+            delete newErrors.customerPin;
+            delete newErrors.customerState;
+            return newErrors;
+        });
+    };
+
+    const handleItemsChange = (newItems: BillItem[]) => {
+        setItems(newItems);
+        if (fieldErrors.billItems) {
+            setFieldErrors((prev) => {
+                const { billItems: _removed, ...rest } = prev;
+                void _removed;
+                return rest;
+            });
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
             <div className="container mx-auto py-8 px-4 max-w-6xl">
@@ -57,26 +97,32 @@ function App() {
                 <InvoiceHeader
                     invoiceNumber={invoiceNumber}
                     date={dateString}
-                    onInvoiceNumberChange={setInvoiceNumber}
+                    onInvoiceNumberChange={handleInvoiceNumberChange}
                     onDateChange={setDateString}
+                    errors={fieldErrors}
                 />
 
                 {/* Customer Details */}
-                <CustomerDetailsForm customerDetails={customerDetails} onChange={setCustomerDetails} />
+                <CustomerDetailsForm
+                    customerDetails={customerDetails}
+                    onChange={handleCustomerDetailsChange}
+                    errors={fieldErrors}
+                />
 
                 {/* Bill Items Table */}
                 <BillTable
                     items={items}
                     calculatedItems={calculatedItems}
                     grandTotal={totals.grandTotal}
-                    onItemsChange={setItems}
+                    onItemsChange={handleItemsChange}
+                    hasError={!!fieldErrors.billItems}
                 />
 
                 {/* Bill Summary */}
                 <BillSummary totals={totals} />
 
                 {/* Generate PDF Button */}
-                <GeneratePDFButton billData={billData} />
+                <GeneratePDFButton billData={billData} onValidationErrors={setFieldErrors} />
             </div>
         </div>
     );

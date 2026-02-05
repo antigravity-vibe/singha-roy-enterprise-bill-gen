@@ -4,12 +4,14 @@ import { DEFAULT_CGST_PERCENT, DEFAULT_SGST_PERCENT } from "../constants/default
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "./ui/table";
 import { Input } from "./ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { cn } from "../lib/cn";
 
 interface BillTableProps {
     items: BillItem[];
     calculatedItems: BillItemCalculated[];
     grandTotal: number;
     onItemsChange: (items: BillItem[]) => void;
+    hasError?: boolean;
 }
 
 /**
@@ -65,7 +67,7 @@ function isItemFilled(item: BillItem): boolean {
  * - Auto-removes trailing empty rows (keeps at least 1)
  * - Auto-calculates taxable value, GST amounts, and row totals
  */
-export function BillTable({ items, calculatedItems, grandTotal, onItemsChange }: BillTableProps) {
+export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, hasError = false }: BillTableProps) {
     // Auto-manage rows: add/remove based on content
     useEffect(() => {
         if (items.length === 0) {
@@ -115,9 +117,12 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange }:
     };
 
     return (
-        <Card className="mb-6 overflow-hidden">
+        <Card className={cn("mb-6 overflow-hidden", hasError && "border-red-500")}>
             <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-800">Bill Items</CardTitle>
+                <CardTitle className={cn("text-lg font-semibold", hasError ? "text-red-600" : "text-slate-800")}>
+                    Bill Items
+                    {hasError && <span className="text-sm font-normal ml-2">— At least one item is required</span>}
+                </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                 <div className="overflow-x-auto">
