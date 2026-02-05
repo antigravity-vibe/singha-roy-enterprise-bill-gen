@@ -1,7 +1,7 @@
 {
-    "name": "singha_roy_enterprise_bill_gen",
+    "name": "singha-roy-enterprise-bill-gen",
     "private": true,
-    "version": "0.0.0",
+    "version": "0.0.1",
     "type": "module",
     "scripts": {
         "dev": "vite",
