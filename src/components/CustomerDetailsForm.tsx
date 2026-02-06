@@ -30,8 +30,8 @@ export const emptyCustomerDetails: CustomerDetails = {
 
 /**
  * Form for entering customer details.
- * Name and Address (line1, city, pin, state) are required.
- * Phone and GST Number are optional.
+ * Name and Address (line1, city, state) are required.
+ * PIN Code, Phone and GST Number are optional.
  */
 export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: CustomerDetailsFormProps) {
     const updateField = <K extends keyof CustomerDetails>(field: K, value: CustomerDetails[K]) => {
@@ -107,9 +107,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     </div>
 
                     <div>
-                        <Label htmlFor="customerPin" className={errors.customerPin ? "text-red-600" : ""}>
-                            PIN Code <span className="text-red-500">*</span>
-                        </Label>
+                        <Label htmlFor="customerPin">PIN Code (optional)</Label>
                         <Input
                             id="customerPin"
                             value={customerDetails.address.pin}

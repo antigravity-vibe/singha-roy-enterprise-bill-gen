@@ -64,7 +64,6 @@ function App() {
             delete newErrors.customerName;
             delete newErrors.customerAddress1;
             delete newErrors.customerCity;
-            delete newErrors.customerPin;
             delete newErrors.customerState;
             return newErrors;
         });

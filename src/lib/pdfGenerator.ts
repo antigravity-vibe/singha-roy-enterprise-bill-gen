@@ -45,7 +45,9 @@ function generateDocumentDefinition(billData: BillData): TDocumentDefinitions {
     const customerAddress = [
         customerDetails.address.line1,
         customerDetails.address.line2,
-        `${customerDetails.address.city} - ${customerDetails.address.pin}`,
+        customerDetails.address.pin
+            ? `${customerDetails.address.city} - ${customerDetails.address.pin}`
+            : customerDetails.address.city,
         customerDetails.address.state,
     ]
         .filter(Boolean)
@@ -239,7 +241,6 @@ function generateDocumentDefinition(billData: BillData): TDocumentDefinitions {
                         {
                             text: "Authorized Signature",
                             alignment: "right",
-                            decoration: "overline",
                         },
                     ],
                 },
@@ -315,10 +316,6 @@ export function validateBillData(billData: BillData): FieldErrors {
 
     if (!billData.customerDetails.address.city.trim()) {
         errors.customerCity = "City is required";
-    }
-
-    if (!billData.customerDetails.address.pin.trim()) {
-        errors.customerPin = "PIN code is required";
     }
 
     if (!billData.customerDetails.address.state.trim()) {
