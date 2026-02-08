@@ -5,9 +5,8 @@ import type { BillData } from "../types/bill";
 import { formatAmountInWords } from "./numberToWords";
 import SinghaRoyEnterpriseLogoRaw from "@/assets/singhaRoyEnterpriseLogo.svg?raw";
 
-console.log(SinghaRoyEnterpriseLogoRaw);
 // Initialize pdfMake with fonts
-pdfMake.vfs = pdfFonts.vfs;
+pdfMake.addVirtualFileSystem(pdfFonts);
 
 /**
  * Field error type for validation
@@ -178,10 +177,10 @@ function generateDocumentDefinition(billData: BillData): TDocumentDefinitions {
                         { text: customerAddress, fontSize: 9 },
                         customerDetails.phone
                             ? { text: `Phone: ${customerDetails.phone}`, fontSize: 9, margin: [0, 3, 0, 0] }
-                            : {},
+                            : { text: "" },
                         customerDetails.gstNo
                             ? { text: `GST No: ${customerDetails.gstNo}`, fontSize: 9, margin: [0, 3, 0, 0] }
-                            : {},
+                            : { text: "" },
                     ],
                     margin: [0, 0, 10, 0],
                 },
