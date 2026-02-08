@@ -51,7 +51,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                 <CardTitle className="text-lg font-semibold text-slate-800">Customer Details</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="md:col-span-2">
                         <Label htmlFor="customerName" className={errors.customerName ? "text-red-600" : ""}>
                             Customer Name <span className="text-red-500">*</span>
@@ -63,7 +63,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                             placeholder="Enter customer name"
                             className={cn(errors.customerName && "border-red-500 focus-visible:ring-red-500")}
                         />
-                        {errors.customerName && <p className="text-sm text-red-600 mt-1">{errors.customerName}</p>}
+                        {errors.customerName && <p className="mt-1 text-sm text-red-600">{errors.customerName}</p>}
                     </div>
 
                     <div className="md:col-span-2">
@@ -78,7 +78,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                             className={cn(errors.customerAddress1 && "border-red-500 focus-visible:ring-red-500")}
                         />
                         {errors.customerAddress1 && (
-                            <p className="text-sm text-red-600 mt-1">{errors.customerAddress1}</p>
+                            <p className="mt-1 text-sm text-red-600">{errors.customerAddress1}</p>
                         )}
                     </div>
 
@@ -103,7 +103,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                             placeholder="Enter city"
                             className={cn(errors.customerCity && "border-red-500 focus-visible:ring-red-500")}
                         />
-                        {errors.customerCity && <p className="text-sm text-red-600 mt-1">{errors.customerCity}</p>}
+                        {errors.customerCity && <p className="mt-1 text-sm text-red-600">{errors.customerCity}</p>}
                     </div>
 
                     <div>
@@ -116,7 +116,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                             maxLength={6}
                             className={cn(errors.customerPin && "border-red-500 focus-visible:ring-red-500")}
                         />
-                        {errors.customerPin && <p className="text-sm text-red-600 mt-1">{errors.customerPin}</p>}
+                        {errors.customerPin && <p className="mt-1 text-sm text-red-600">{errors.customerPin}</p>}
                     </div>
 
                     <div>
@@ -141,7 +141,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                                 ))}
                             </SelectContent>
                         </Select>
-                        {errors.customerState && <p className="text-sm text-red-600 mt-1">{errors.customerState}</p>}
+                        {errors.customerState && <p className="mt-1 text-sm text-red-600">{errors.customerState}</p>}
                     </div>
 
                     <div>

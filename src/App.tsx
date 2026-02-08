@@ -84,11 +84,11 @@ function App() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-            <div className="container mx-auto py-8 px-4 max-w-6xl">
+            <div className="container mx-auto max-w-6xl px-4 py-8">
                 {/* Page Header */}
-                <header className="text-center mb-8">
-                    <SinghaRoyEnterpriseLogo className="w-20 h-20 mx-auto mb-4" />
-                    <h1 className="text-3xl font-bold text-slate-800 mb-2">Bill generator</h1>
+                <header className="mb-8 text-center">
+                    <SinghaRoyEnterpriseLogo className="mx-auto mb-4 h-20 w-20" />
+                    <h1 className="mb-2 text-3xl font-bold text-slate-800">Bill generator</h1>
                     <p className="text-slate-600">Create GST-compliant invoices for SINGHA ROY ENTERPRISE</p>
                 </header>
 

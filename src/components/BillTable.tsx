@@ -121,7 +121,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
             <CardHeader>
                 <CardTitle className={cn("text-lg font-semibold", hasError ? "text-red-600" : "text-slate-800")}>
                     Bill Items
-                    {hasError && <span className="text-sm font-normal ml-2">— At least one item is required</span>}
+                    {hasError && <span className="ml-2 text-sm font-normal">— At least one item is required</span>}
                 </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
@@ -151,7 +151,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             value={items[index].description}
                                             onChange={(e) => updateItem(index, "description", e.target.value)}
                                             placeholder="Item name"
-                                            className="border-0 shadow-none focus-visible:ring-1 h-8"
+                                            className="h-8 border-0 shadow-none focus-visible:ring-1"
                                         />
                                     </TableCell>
                                     <TableCell>
@@ -159,7 +159,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             value={items[index].hsnSac}
                                             onChange={(e) => updateItem(index, "hsnSac", e.target.value)}
                                             placeholder="HSN"
-                                            className="border-0 shadow-none focus-visible:ring-1 h-8"
+                                            className="h-8 border-0 shadow-none focus-visible:ring-1"
                                         />
                                     </TableCell>
                                     <TableCell>
@@ -168,7 +168,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             value={items[index].quantity ?? ""}
                                             onChange={(e) => handleNumberInput(index, "quantity", e.target.value)}
                                             placeholder="0"
-                                            className="border-0 shadow-none focus-visible:ring-1 h-8 text-right"
+                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
                                             min={0}
                                         />
                                     </TableCell>
@@ -178,7 +178,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             value={items[index].rate ?? ""}
                                             onChange={(e) => handleNumberInput(index, "rate", e.target.value)}
                                             placeholder="0.00"
-                                            className="border-0 shadow-none focus-visible:ring-1 h-8 text-right"
+                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
                                             min={0}
                                             step={0.01}
                                         />
@@ -192,7 +192,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             value={items[index].cgstPercent ?? ""}
                                             onChange={(e) => handleNumberInput(index, "cgstPercent", e.target.value)}
                                             placeholder="9"
-                                            className="border-0 shadow-none focus-visible:ring-1 h-8 text-right"
+                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
                                             min={0}
                                             max={100}
                                             step={0.5}
@@ -207,7 +207,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             value={items[index].sgstPercent ?? ""}
                                             onChange={(e) => handleNumberInput(index, "sgstPercent", e.target.value)}
                                             placeholder="9"
-                                            className="border-0 shadow-none focus-visible:ring-1 h-8 text-right"
+                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
                                             min={0}
                                             max={100}
                                             step={0.5}
@@ -227,7 +227,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                 <TableCell colSpan={10} className="text-right font-semibold">
                                     Grand Total:
                                 </TableCell>
-                                <TableCell className="text-right font-bold text-lg">
+                                <TableCell className="text-right text-lg font-bold">
                                     ₹ {formatNumber(grandTotal)}
                                 </TableCell>
                             </TableRow>

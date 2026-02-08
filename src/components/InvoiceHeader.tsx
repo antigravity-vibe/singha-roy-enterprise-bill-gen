@@ -46,8 +46,8 @@ export function InvoiceHeader({
     return (
         <Card className="mb-6">
             <CardContent className="pt-6">
-                <div className="flex flex-wrap gap-4 items-end">
-                    <div className="flex-1 min-w-50">
+                <div className="flex flex-wrap items-end gap-4">
+                    <div className="min-w-50 flex-1">
                         <Label htmlFor="invoiceNumber" className={hasInvoiceError ? "text-red-600" : ""}>
                             Invoice Number <span className="text-red-500">*</span>
                         </Label>
@@ -58,9 +58,9 @@ export function InvoiceHeader({
                             placeholder="Enter invoice number"
                             className={cn("font-mono", hasInvoiceError && "border-red-500 focus-visible:ring-red-500")}
                         />
-                        {hasInvoiceError && <p className="text-sm text-red-600 mt-1">{errors.invoiceNumber}</p>}
+                        {hasInvoiceError && <p className="mt-1 text-sm text-red-600">{errors.invoiceNumber}</p>}
                     </div>
-                    <div className="flex-1 min-w-50">
+                    <div className="min-w-50 flex-1">
                         <Label htmlFor="invoiceDate">
                             Date <span className="text-red-500">*</span>
                         </Label>

@@ -54,7 +54,7 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
                     </Button>
                 </CardHeader>
                 <CardContent className="text-sm text-slate-600">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                         <div>
                             <span className="font-medium">Phone:</span> {businessDetails.phones.join(", ")}
                         </div>
@@ -74,14 +74,14 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
             </Card>
 
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle className="text-lg font-semibold text-slate-800">
                             Edit Business Details
                         </DialogTitle>
                     </DialogHeader>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+                    <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
                         <div className="md:col-span-2">
                             <Label htmlFor="businessName">Business Name</Label>
                             <Input
