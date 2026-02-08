@@ -85,6 +85,11 @@ function App() {
             <div className="container mx-auto py-8 px-4 max-w-6xl">
                 {/* Page Header */}
                 <header className="text-center mb-8">
+                    <img
+                        src="/singha_roy_enterprise_logo.svg"
+                        alt="Singha Roy Enterprise Logo"
+                        className="w-20 h-20 mx-auto mb-4"
+                    />
                     <h1 className="text-3xl font-bold text-slate-800 mb-2">Bill Generator</h1>
                     <p className="text-slate-600">Create GST-compliant invoices for SINGHA ROY ENTERPRISE</p>
                 </header>
