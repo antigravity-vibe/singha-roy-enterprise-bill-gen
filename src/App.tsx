@@ -7,6 +7,7 @@ import { BusinessDetailsForm } from "./components/BusinessDetailsForm";
 import { CustomerDetailsForm, emptyCustomerDetails } from "./components/CustomerDetailsForm";
 import { InvoiceHeader, getTodayDateString } from "./components/InvoiceHeader";
 import { BillTable, createEmptyItem } from "./components/BillTable";
+import { ReverseGstCalculator } from "./components/ReverseGstCalculator";
 import { BillSummary } from "./components/BillSummary";
 import { GeneratePDFButton } from "./components/GeneratePDFButton";
 import type { FieldErrors } from "./lib/pdfGenerator";
@@ -110,6 +111,9 @@ function App() {
                     onChange={handleCustomerDetailsChange}
                     errors={fieldErrors}
                 />
+
+                {/* Reverse GST Calculator (helper tool) */}
+                <ReverseGstCalculator />
 
                 {/* Bill Items Table */}
                 <BillTable
