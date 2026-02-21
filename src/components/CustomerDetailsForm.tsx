@@ -1,11 +1,12 @@
 import type { CustomerDetails, Address } from "../types/bill";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { INDIAN_STATES } from "../constants/defaults";
 import { cn } from "../lib/cn";
 import type { FieldErrors } from "../lib/pdfGenerator";
+import { SectionLabel } from "./SectionLabel";
 
 interface CustomerDetailsFormProps {
     customerDetails: CustomerDetails;
@@ -46,11 +47,9 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
     };
 
     return (
-        <Card className="mb-6">
-            <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-800">Customer Details</CardTitle>
-            </CardHeader>
-            <CardContent>
+        <Card className="relative mb-10 transition-shadow duration-200 hover:shadow-md">
+            <SectionLabel title="Customer Details" />
+            <CardContent className="pt-8">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="md:col-span-2">
                         <Label htmlFor="customerName" className={errors.customerName ? "text-red-600" : ""}>
@@ -83,12 +82,17 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     </div>
 
                     <div className="md:col-span-2">
-                        <Label htmlFor="customerAddress2">Address Line 2</Label>
+                        <Label htmlFor="customerAddress2">
+                            Address Line 2{" "}
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                                OPTIONAL
+                            </span>
+                        </Label>
                         <Input
                             id="customerAddress2"
                             value={customerDetails.address.line2 || ""}
                             onChange={(e) => updateAddress("line2", e.target.value)}
-                            placeholder="Area, landmark (optional)"
+                            placeholder="Area, landmark"
                         />
                     </div>
 
@@ -107,7 +111,12 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     </div>
 
                     <div>
-                        <Label htmlFor="customerPin">PIN Code (optional)</Label>
+                        <Label htmlFor="customerPin">
+                            PIN Code{" "}
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                                OPTIONAL
+                            </span>
+                        </Label>
                         <Input
                             id="customerPin"
                             value={customerDetails.address.pin}
@@ -145,7 +154,12 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     </div>
 
                     <div>
-                        <Label htmlFor="customerPhone">Phone (optional)</Label>
+                        <Label htmlFor="customerPhone">
+                            Phone{" "}
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                                OPTIONAL
+                            </span>
+                        </Label>
                         <Input
                             id="customerPhone"
                             value={customerDetails.phone || ""}
@@ -156,13 +170,19 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     </div>
 
                     <div>
-                        <Label htmlFor="customerGst">GST Number (optional)</Label>
+                        <Label htmlFor="customerGst">
+                            GST Number{" "}
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                                OPTIONAL
+                            </span>
+                        </Label>
                         <Input
                             id="customerGst"
                             value={customerDetails.gstNo || ""}
                             onChange={(e) => updateField("gstNo", e.target.value)}
                             placeholder="15-character GSTIN"
                             maxLength={15}
+                            className="font-mono"
                         />
                     </div>
                 </div>

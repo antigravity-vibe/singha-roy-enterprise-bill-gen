@@ -84,19 +84,23 @@ function App() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-            <div className="container mx-auto max-w-6xl px-4 py-8">
+        <div className="min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100">
+            <div className="container mx-auto max-w-6xl px-4 py-10">
                 {/* Page Header */}
-                <header className="mb-8 text-center">
-                    <SinghaRoyEnterpriseLogo className="mx-auto mb-4 h-20 w-20" />
-                    <h1 className="mb-2 text-3xl font-bold text-slate-800">Bill generator</h1>
-                    <p className="text-slate-600">Create GST-compliant invoices for SINGHA ROY ENTERPRISE</p>
+                <header className="mb-10 text-center">
+                    <SinghaRoyEnterpriseLogo className="mx-auto mb-4 h-20 w-20 drop-shadow-md" />
+                    <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-slate-900">Bill Generator</h1>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-emerald-50 to-teal-50 px-4 py-1.5 text-sm font-medium text-emerald-700 ring-1 ring-emerald-200/60">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                        GST-Compliant Invoices
+                    </span>
                 </header>
+                <hr className="mb-8 border-slate-200/60" />
 
-                {/* Business Details (collapsible) */}
+                {/* ① Business Details */}
                 <BusinessDetailsForm />
 
-                {/* Invoice Header */}
+                {/* ② Invoice Details */}
                 <InvoiceHeader
                     invoiceNumber={invoiceNumber}
                     date={dateString}
@@ -105,7 +109,7 @@ function App() {
                     errors={fieldErrors}
                 />
 
-                {/* Customer Details */}
+                {/* ③ Customer Details */}
                 <CustomerDetailsForm
                     customerDetails={customerDetails}
                     onChange={handleCustomerDetailsChange}
@@ -115,7 +119,7 @@ function App() {
                 {/* Reverse GST Calculator (helper tool) */}
                 <ReverseGstCalculator />
 
-                {/* Bill Items Table */}
+                {/* ④ Bill Items */}
                 <BillTable
                     items={items}
                     calculatedItems={calculatedItems}
@@ -124,7 +128,7 @@ function App() {
                     hasError={!!fieldErrors.billItems}
                 />
 
-                {/* Bill Summary */}
+                {/* ⑤ Summary & Export */}
                 <BillSummary totals={totals} />
 
                 {/* Generate PDF Button */}

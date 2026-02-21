@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "./ui/dialog";
+import { SectionLabel } from "./SectionLabel";
 
 interface BusinessDetailsFormProps {
     onDetailsChange?: (details: BusinessDetails) => void;
@@ -46,28 +47,55 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
 
     return (
         <>
-            <Card className="mb-6">
+            <Card className="relative mb-10 transition-shadow duration-200 hover:shadow-md">
+                <SectionLabel title="Business Details" />
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-lg font-semibold text-slate-800">{businessDetails.name}</CardTitle>
-                    <Button variant="outline" size="sm" onClick={handleOpen}>
-                        Edit Business Details
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleOpen}
+                        className="gap-1.5 text-slate-500 hover:text-slate-700"
+                    >
+                        <svg
+                            className="h-3.5 w-3.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                            />
+                        </svg>
+                        Edit
                     </Button>
                 </CardHeader>
                 <CardContent className="text-sm text-slate-600">
-                    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                        <div>
-                            <span className="font-medium">Phone:</span> {businessDetails.phones.join(", ")}
+                    <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2">
+                        <div className="flex items-center gap-2">
+                            <span className="text-slate-400">📞</span>
+                            <span>{businessDetails.phones.join(", ")}</span>
                         </div>
-                        <div>
-                            <span className="font-medium">Email:</span> {businessDetails.email}
+                        <div className="flex items-center gap-2">
+                            <span className="text-slate-400">📧</span>
+                            <span>{businessDetails.email}</span>
                         </div>
-                        <div>
-                            <span className="font-medium">GST No:</span> {businessDetails.gstNo}
+                        <div className="flex items-center gap-2">
+                            <span className="text-slate-400">🔢</span>
+                            <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-medium text-slate-700">
+                                {businessDetails.gstNo}
+                            </span>
                         </div>
-                        <div className="md:col-span-2">
-                            <span className="font-medium">Address:</span> {businessDetails.address.line1}
-                            {businessDetails.address.line2 && `, ${businessDetails.address.line2}`}
-                            {`, ${businessDetails.address.city} - ${businessDetails.address.pin}, ${businessDetails.address.state}`}
+                        <div className="flex items-start gap-2 md:col-span-2">
+                            <span className="text-slate-400">📍</span>
+                            <span>
+                                {businessDetails.address.line1}
+                                {businessDetails.address.line2 && `, ${businessDetails.address.line2}`}
+                                {`, ${businessDetails.address.city} - ${businessDetails.address.pin}, ${businessDetails.address.state}`}
+                            </span>
                         </div>
                     </div>
                 </CardContent>

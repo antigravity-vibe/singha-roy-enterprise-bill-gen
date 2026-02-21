@@ -11,7 +11,7 @@ export const DEFAULT_BUSINESS_DETAILS: BusinessDetails = {
     gstNo: "19ALAPR8029B1Z5",
     address: {
         line1: "Singha Roy Bhaban, Saheb Kachari Para",
-        line2: "Balurghat, Dist.- South Dinajpur",
+        line2: "Balurghat, District - South Dinajpur",
         city: "Balurghat",
         pin: "733101",
         state: "West Bengal",

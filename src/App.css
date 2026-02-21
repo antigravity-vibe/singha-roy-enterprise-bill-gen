@@ -14,6 +14,15 @@
         appearance: textfield;
     }
 
+    /* Smooth transitions on all inputs */
+    input,
+    select,
+    textarea {
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
     /* Table cell inputs */
     .bill-table-input {
         border: none;

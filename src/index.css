@@ -6,6 +6,9 @@
 /* @import "react-day-picker/style.css"; */
 
 @theme {
+    /* Global font */
+    --font-sans: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
     /* Map CSS variables to Tailwind colors */
     --color-background: hsl(var(--background));
     --color-foreground: hsl(var(--foreground));

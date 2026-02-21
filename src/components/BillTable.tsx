@@ -3,8 +3,9 @@ import type { BillItem, BillItemCalculated } from "../types/bill";
 import { DEFAULT_CGST_PERCENT, DEFAULT_SGST_PERCENT } from "../constants/defaults";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "./ui/table";
 import { Input } from "./ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { cn } from "../lib/cn";
+import { SectionLabel } from "./SectionLabel";
 
 interface BillTableProps {
     items: BillItem[];
@@ -29,7 +30,7 @@ export function createEmptyItem(): BillItem {
         id: generateId(),
         description: "",
         hsnSac: "",
-        quantity: null,
+        quantity: 1,
         rate: null,
         cgstPercent: DEFAULT_CGST_PERCENT,
         sgstPercent: DEFAULT_SGST_PERCENT,
@@ -37,27 +38,19 @@ export function createEmptyItem(): BillItem {
 }
 
 /**
- * Check if a bill item is empty (no meaningful data entered)
+ * Check if a bill item is empty (no meaningful data entered).
+ * Quantity is excluded because it defaults to 1.
  */
 function isItemEmpty(item: BillItem): boolean {
-    return (
-        !item.description.trim() &&
-        !item.hsnSac.trim() &&
-        (item.quantity === null || item.quantity === 0) &&
-        (item.rate === null || item.rate === 0)
-    );
+    return !item.description.trim() && !item.hsnSac.trim() && (item.rate === null || item.rate === 0);
 }
 
 /**
- * Check if a bill item has any data (partially or fully filled)
+ * Check if a bill item has any data (partially or fully filled).
+ * Quantity is excluded because it defaults to 1.
  */
 function isItemFilled(item: BillItem): boolean {
-    return (
-        item.description.trim() !== "" ||
-        item.hsnSac.trim() !== "" ||
-        (item.quantity !== null && item.quantity > 0) ||
-        (item.rate !== null && item.rate > 0)
-    );
+    return item.description.trim() !== "" || item.hsnSac.trim() !== "" || (item.rate !== null && item.rate > 0);
 }
 
 /**
@@ -117,34 +110,65 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
     };
 
     return (
-        <Card className={cn("mb-6 overflow-hidden", hasError && "border-red-500")}>
-            <CardHeader>
-                <CardTitle className={cn("text-lg font-semibold", hasError ? "text-red-600" : "text-slate-800")}>
-                    Bill Items
-                    {hasError && <span className="ml-2 text-sm font-normal">— At least one item is required</span>}
-                </CardTitle>
-            </CardHeader>
+        <Card
+            className={cn(
+                "relative mb-10 pt-6 transition-shadow duration-200 hover:shadow-md",
+                hasError && "border-red-500",
+            )}
+        >
+            <SectionLabel title="Bill Items" />
+            {hasError && (
+                <div className="px-6 pt-5 text-sm font-medium text-red-600">⚠ At least one bill item is required</div>
+            )}
             <CardContent className="p-0">
                 <div className="overflow-x-auto">
                     <Table>
                         <TableHeader>
-                            <TableRow className="bg-slate-50">
-                                <TableHead className="w-[50px] text-center">S.No</TableHead>
-                                <TableHead className="min-w-[180px]">Description of Goods</TableHead>
-                                <TableHead className="w-[100px]">HSN/SAC</TableHead>
-                                <TableHead className="w-[80px] text-right">Qty</TableHead>
-                                <TableHead className="w-[100px] text-right">Rate</TableHead>
-                                <TableHead className="w-[120px] text-right">Taxable Value</TableHead>
-                                <TableHead className="w-[70px] text-right">CGST %</TableHead>
-                                <TableHead className="w-[100px] text-right">CGST Amt</TableHead>
-                                <TableHead className="w-[70px] text-right">SGST %</TableHead>
-                                <TableHead className="w-[100px] text-right">SGST Amt</TableHead>
-                                <TableHead className="w-[120px] text-right">Amount</TableHead>
+                            <TableRow>
+                                <TableHead className="w-[50px] text-center text-[11px] font-semibold tracking-wider uppercase">
+                                    S.No
+                                </TableHead>
+                                <TableHead className="min-w-[180px] text-[11px] font-semibold tracking-wider uppercase">
+                                    Description of Goods
+                                </TableHead>
+                                <TableHead className="w-[100px] text-[11px] font-semibold tracking-wider uppercase">
+                                    HSN/SAC
+                                </TableHead>
+                                <TableHead className="w-[80px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    Qty
+                                </TableHead>
+                                <TableHead className="w-[100px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    Rate
+                                </TableHead>
+                                <TableHead className="w-[120px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    Taxable Val.
+                                </TableHead>
+                                <TableHead className="w-[70px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    CGST %
+                                </TableHead>
+                                <TableHead className="w-[100px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    CGST Amt
+                                </TableHead>
+                                <TableHead className="w-[70px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    SGST %
+                                </TableHead>
+                                <TableHead className="w-[100px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    SGST Amt
+                                </TableHead>
+                                <TableHead className="w-[120px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                    Amount
+                                </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {calculatedItems.map((item, index) => (
-                                <TableRow key={item.id}>
+                                <TableRow
+                                    key={item.id}
+                                    className={cn(
+                                        "transition-colors hover:bg-slate-50/80",
+                                        index % 2 === 1 && "bg-slate-25",
+                                    )}
+                                >
                                     <TableCell className="text-center font-medium">{index + 1}</TableCell>
                                     <TableCell>
                                         <Input
@@ -223,11 +247,11 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                             ))}
                         </TableBody>
                         <TableFooter>
-                            <TableRow className="bg-slate-100">
-                                <TableCell colSpan={10} className="text-right font-semibold">
-                                    Grand Total:
+                            <TableRow className="bg-linear-to-r from-slate-800 to-slate-700">
+                                <TableCell colSpan={10} className="text-right font-semibold text-white/80">
+                                    Grand Total
                                 </TableCell>
-                                <TableCell className="text-right text-lg font-bold">
+                                <TableCell className="text-right font-mono text-lg font-bold text-white">
                                     ₹ {formatNumber(grandTotal)}
                                 </TableCell>
                             </TableRow>
