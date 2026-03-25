@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Phone, Mail, Hash, MapPin, Pencil } from "lucide-react";
 import type { BusinessDetails } from "../types/bill";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { DEFAULT_BUSINESS_DETAILS, STORAGE_KEY_BUSINESS_DETAILS } from "../constants/defaults";
@@ -59,45 +60,33 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
                         onClick={handleOpen}
                         className="gap-1.5 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                     >
-                        <svg
-                            className="h-3.5 w-3.5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                            />
-                        </svg>
+                        <Pencil className="h-3.5 w-3.5" />
                         Edit
                     </Button>
                 </CardHeader>
                 <CardContent className="text-sm text-slate-600 dark:text-slate-300">
                     <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2">
                         <div className="flex items-center gap-2">
-                            <span className="text-slate-400">📞</span>
+                            <Phone className="h-4 w-4 text-slate-400" />
                             <span>{businessDetails.phones.join(", ")}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="text-slate-400">📧</span>
+                            <Mail className="h-4 w-4 text-slate-400" />
                             <span>{businessDetails.email}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="text-slate-400 dark:text-slate-500">🔢</span>
+                            <Hash className="h-4 w-4 text-slate-400 dark:text-slate-500" />
                             <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                                {businessDetails.gstNo}
+                                GST: {businessDetails.gstNo}
                             </span>
                         </div>
                         <div className="flex items-start gap-2 md:col-span-2">
-                            <span className="text-slate-400">📍</span>
-                            <span>
-                                {businessDetails.address.line1}
-                                {businessDetails.address.line2 && `, ${businessDetails.address.line2}`}
-                                {`, ${businessDetails.address.city} - ${businessDetails.address.pin}, ${businessDetails.address.state}`}
-                            </span>
+                            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                            <div className="flex flex-col">
+                                <span>{businessDetails.address.line1}</span>
+                                {businessDetails.address.line2 && <span>{businessDetails.address.line2}</span>}
+                                <span>{`${businessDetails.address.city} - ${businessDetails.address.pin}, ${businessDetails.address.state}`}</span>
+                            </div>
                         </div>
                     </div>
                 </CardContent>
