@@ -5,9 +5,19 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 /* @import "react-day-picker/style.css"; */
 
+@font-face {
+    font-family: "MonoLisa";
+    src:
+        url("./assets/fonts/monolisa/MonoLisa-normal.woff2") format("woff2"),
+        url("./assets/fonts/monolisa/MonoLisa-normal.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 @theme {
     /* Global font */
-    --font-sans: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-sans: "MonoLisa", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
     /* Map CSS variables to Tailwind colors */
     --color-background: hsl(var(--background));
