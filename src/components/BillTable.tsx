@@ -248,10 +248,10 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                         </TableBody>
                         <TableFooter>
                             <TableRow className="bg-linear-to-r from-slate-800 to-slate-700">
-                                <TableCell colSpan={10} className="text-right font-semibold text-white/80">
+                                <TableCell colSpan={2} className="text-left font-semibold text-white/80">
                                     Grand Total
                                 </TableCell>
-                                <TableCell className="text-right font-mono text-lg font-bold text-white">
+                                <TableCell colSpan={11} className="text-right font-mono text-lg font-bold text-white">
                                     ₹ {formatNumber(grandTotal)}
                                 </TableCell>
                             </TableRow>
