@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
@@ -29,6 +30,8 @@ export function InvoiceHeader({
     onDateChange,
     errors = {},
 }: InvoiceHeaderProps) {
+    const [calendarOpen, setCalendarOpen] = useState(false);
+
     // Parse the date string to a Date object for the calendar
     const selectedDate = date ? new Date(date + "T00:00:00") : undefined;
 
@@ -40,6 +43,7 @@ export function InvoiceHeader({
             const day = String(newDate.getDate()).padStart(2, "0");
             onDateChange(`${year}-${month}-${day}`);
         }
+        setCalendarOpen(false);
     };
 
     const hasInvoiceError = !!errors.invoiceNumber;
@@ -74,7 +78,7 @@ export function InvoiceHeader({
                         <Label htmlFor="invoiceDate">
                             Date <span className="text-red-500">*</span>
                         </Label>
-                        <Popover>
+                        <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                             <PopoverTrigger asChild>
                                 <Button
                                     id="invoiceDate"
