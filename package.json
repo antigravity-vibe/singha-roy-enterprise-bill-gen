@@ -1,8 +1,12 @@
 {
     "name": "singha-roy-enterprise-bill-gen",
     "private": true,
-    "version": "0.1.0",
+    "version": "1.0.0",
     "type": "module",
+    "repository": {
+        "url": "https://github.com/antigravity-vibe/singha-roy-enterprise-bill-gen.git",
+        "type": "git"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",
