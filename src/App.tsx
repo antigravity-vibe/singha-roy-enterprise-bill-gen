@@ -133,10 +133,10 @@ function App() {
     return (
         <div className="min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100 pt-16 transition-colors duration-300 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
             {/* Fixed Page Header */}
-            <header className="fixed top-0 right-0 left-0 z-50 flex h-16 w-full items-center justify-between bg-white/90 px-4 shadow-sm backdrop-blur-md ring-1 ring-slate-900/5 select-none transition-colors duration-300 dark:bg-slate-950/90 dark:ring-slate-100/10 sm:px-6">
+            <header className="fixed top-0 right-0 left-0 z-50 flex h-16 w-full items-center justify-between bg-white/90 px-4 shadow-sm ring-1 ring-slate-900/5 backdrop-blur-md transition-colors duration-300 select-none sm:px-6 dark:bg-slate-950/90 dark:ring-slate-100/10">
                 <div className="flex items-center gap-3">
                     <SinghaRoyEnterpriseLogo className="h-10 w-10 shrink-0 drop-shadow-sm sm:h-11 sm:w-11" />
-                    <h1 className="text-lg font-extrabold tracking-tight text-slate-900 transition-colors duration-300 dark:text-slate-100 sm:text-xl lg:text-2xl">
+                    <h1 className="text-lg font-extrabold tracking-tight text-slate-900 transition-colors duration-300 sm:text-xl lg:text-2xl dark:text-slate-100">
                         SINGHA ROY ENTERPRISE INVOICE GENERATOR
                     </h1>
                 </div>

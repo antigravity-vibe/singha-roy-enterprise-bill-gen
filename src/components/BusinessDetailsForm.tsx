@@ -50,7 +50,9 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
             <Card className="relative mb-10 transition-shadow duration-200 hover:shadow-md">
                 <SectionLabel title="Business Details" />
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <CardTitle className="text-lg font-semibold text-slate-800 dark:text-slate-200">{businessDetails.name}</CardTitle>
+                    <CardTitle className="text-lg font-semibold text-slate-800 dark:text-slate-200">
+                        {businessDetails.name}
+                    </CardTitle>
                     <Button
                         variant="outline"
                         size="sm"

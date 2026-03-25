@@ -24,15 +24,21 @@ export function BillSummary({ totals }: BillSummaryProps) {
                 <div className="divide-y divide-slate-100 dark:divide-slate-800/60">
                     <div className="flex items-center justify-between bg-slate-50/50 px-5 py-3 dark:bg-slate-800/30">
                         <span className="text-sm text-slate-600 dark:text-slate-400">Total Taxable Value</span>
-                        <span className="font-medium text-slate-800 dark:text-slate-200">₹ {formatNumber(totals.totalTaxableValue)}</span>
+                        <span className="font-medium text-slate-800 dark:text-slate-200">
+                            ₹ {formatNumber(totals.totalTaxableValue)}
+                        </span>
                     </div>
                     <div className="flex items-center justify-between px-5 py-3">
                         <span className="text-sm text-slate-600 dark:text-slate-400">Total CGST</span>
-                        <span className="font-medium text-slate-800 dark:text-slate-200">₹ {formatNumber(totals.totalCgst)}</span>
+                        <span className="font-medium text-slate-800 dark:text-slate-200">
+                            ₹ {formatNumber(totals.totalCgst)}
+                        </span>
                     </div>
                     <div className="flex items-center justify-between bg-slate-50/50 px-5 py-3 dark:bg-slate-800/30">
                         <span className="text-sm text-slate-600 dark:text-slate-400">Total SGST</span>
-                        <span className="font-medium text-slate-800 dark:text-slate-200">₹ {formatNumber(totals.totalSgst)}</span>
+                        <span className="font-medium text-slate-800 dark:text-slate-200">
+                            ₹ {formatNumber(totals.totalSgst)}
+                        </span>
                     </div>
                     {/* Grand Total — hero row */}
                     <div className="bg-linear-to-r from-slate-800 to-slate-700 px-5 py-4 dark:from-slate-700 dark:to-slate-600">
