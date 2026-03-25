@@ -59,7 +59,7 @@ export function GeneratePDFButton({ billData, onValidationErrors }: GeneratePDFB
                 onClick={() => handleGenerate("invoice")}
                 disabled={isGenerating}
                 size="lg"
-                className="cursor-pointer gap-2 rounded-xl bg-linear-to-r from-slate-800 to-slate-900 py-7 text-lg font-semibold shadow-lg transition-all duration-200 hover:scale-[1.01] hover:from-slate-700 hover:to-slate-800 hover:shadow-xl active:scale-[0.99]"
+                className="cursor-pointer gap-2 rounded-xl bg-linear-to-r from-slate-800 to-slate-900 py-7 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.01] hover:from-slate-700 hover:to-slate-800 hover:shadow-xl active:scale-[0.99] dark:from-slate-200 dark:to-slate-300 dark:text-slate-900 dark:hover:from-white dark:hover:to-slate-200"
             >
                 {generatingType === "invoice" ? (
                     <>
@@ -77,7 +77,7 @@ export function GeneratePDFButton({ billData, onValidationErrors }: GeneratePDFB
                 onClick={() => handleGenerate("credit-note")}
                 disabled={isGenerating}
                 size="lg"
-                className="cursor-pointer gap-2 rounded-xl bg-linear-to-r from-slate-500 to-slate-600 py-7 text-lg font-semibold shadow-lg transition-all duration-200 hover:scale-[1.01] hover:from-slate-400 hover:to-slate-500 hover:shadow-xl active:scale-[0.99]"
+                className="cursor-pointer gap-2 rounded-xl bg-linear-to-r from-slate-500 to-slate-600 py-7 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.01] hover:from-slate-400 hover:to-slate-500 hover:shadow-xl active:scale-[0.99] dark:from-slate-700 dark:to-slate-800 dark:text-slate-100 dark:hover:from-slate-600 dark:hover:to-slate-700"
             >
                 {generatingType === "credit-note" ? (
                     <>

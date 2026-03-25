@@ -56,7 +56,7 @@ export function ReverseGstCalculator() {
             {/* Toggle Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-amber-300/80 bg-amber-50/50 px-4 py-2.5 text-sm font-medium text-amber-700 transition-all duration-200 hover:border-amber-400 hover:bg-amber-50 hover:shadow-sm"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-amber-300/80 bg-amber-50/50 px-4 py-2.5 text-sm font-medium text-amber-700 transition-all duration-200 hover:border-amber-400 hover:bg-amber-50 hover:shadow-sm dark:border-amber-500/30 dark:bg-amber-950/20 dark:text-amber-500 dark:hover:border-amber-500/50 dark:hover:bg-amber-900/30"
             >
                 <span className="text-base">🧮</span>
                 <span>Reverse GST Calculator</span>
@@ -76,18 +76,18 @@ export function ReverseGstCalculator() {
                 className={`grid transition-all duration-300 ease-in-out ${isOpen ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
             >
                 <div className="overflow-hidden">
-                    <Card className="rounded-xl border-amber-200/60 bg-white shadow-md shadow-amber-100/50">
+                    <Card className="rounded-xl border-amber-200/60 bg-white shadow-md shadow-amber-100/50 dark:border-amber-900/50 dark:bg-slate-900 dark:shadow-none">
                         <CardContent className="pt-5">
                             {/* Total Bill Input with ₹ prefix */}
                             <div className="mb-4">
                                 <Label
                                     htmlFor="reverseGstTotal"
-                                    className="mb-1.5 text-xs font-medium tracking-wide text-slate-500 uppercase"
+                                    className="mb-1.5 text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400"
                                 >
                                     Total Bill (incl. GST)
                                 </Label>
                                 <div className="relative">
-                                    <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm font-medium text-slate-400">
+                                    <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm font-medium text-slate-400 dark:text-slate-500">
                                         ₹
                                     </span>
                                     <Input
@@ -98,7 +98,7 @@ export function ReverseGstCalculator() {
                                         value={totalBill}
                                         onChange={(e) => setTotalBill(e.target.value)}
                                         placeholder="e.g. 11800"
-                                        className="h-11 rounded-lg border-slate-200 pl-7 font-mono text-lg focus-visible:border-amber-400 focus-visible:ring-amber-400/30"
+                                        className="h-11 rounded-lg border-slate-200 pl-7 font-mono text-lg focus-visible:border-amber-400 focus-visible:ring-amber-400/30 dark:border-slate-800 dark:bg-slate-950"
                                     />
                                 </div>
                             </div>
@@ -108,7 +108,7 @@ export function ReverseGstCalculator() {
                                 <div className="flex-1">
                                     <Label
                                         htmlFor="reverseGstCgst"
-                                        className="mb-1.5 text-xs font-medium tracking-wide text-slate-500 uppercase"
+                                        className="mb-1.5 text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400"
                                     >
                                         CGST %
                                     </Label>
@@ -121,9 +121,9 @@ export function ReverseGstCalculator() {
                                             value={cgstPercent}
                                             onChange={(e) => setCgstPercent(e.target.value)}
                                             placeholder="9"
-                                            className="rounded-lg border-slate-200 pr-7 font-mono focus-visible:border-amber-400 focus-visible:ring-amber-400/30"
+                                            className="rounded-lg border-slate-200 pr-7 font-mono focus-visible:border-amber-400 focus-visible:ring-amber-400/30 dark:border-slate-800 dark:bg-slate-950"
                                         />
-                                        <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-xs text-slate-400">
+                                        <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-xs text-slate-400 dark:text-slate-500">
                                             %
                                         </span>
                                     </div>
@@ -131,7 +131,7 @@ export function ReverseGstCalculator() {
                                 <div className="flex-1">
                                     <Label
                                         htmlFor="reverseGstSgst"
-                                        className="mb-1.5 text-xs font-medium tracking-wide text-slate-500 uppercase"
+                                        className="mb-1.5 text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400"
                                     >
                                         SGST %
                                     </Label>
@@ -144,9 +144,9 @@ export function ReverseGstCalculator() {
                                             value={sgstPercent}
                                             onChange={(e) => setSgstPercent(e.target.value)}
                                             placeholder="9"
-                                            className="rounded-lg border-slate-200 pr-7 font-mono focus-visible:border-amber-400 focus-visible:ring-amber-400/30"
+                                            className="rounded-lg border-slate-200 pr-7 font-mono focus-visible:border-amber-400 focus-visible:ring-amber-400/30 dark:border-slate-800 dark:bg-slate-950"
                                         />
-                                        <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-xs text-slate-400">
+                                        <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-xs text-slate-400 dark:text-slate-500">
                                             %
                                         </span>
                                     </div>
@@ -155,9 +155,9 @@ export function ReverseGstCalculator() {
 
                             {/* Results */}
                             {results && (
-                                <div className="mt-4 overflow-hidden rounded-lg border border-amber-200/80">
+                                <div className="mt-4 overflow-hidden rounded-lg border border-amber-200/80 dark:border-amber-700/50">
                                     {/* Taxable Value — hero row */}
-                                    <div className="bg-linear-to-r from-amber-500 to-amber-400 px-4 py-3">
+                                    <div className="bg-linear-to-r from-amber-500 to-amber-400 px-4 py-3 dark:from-amber-600 dark:to-amber-500">
                                         <div className="text-[11px] font-medium tracking-wider text-amber-100 uppercase">
                                             Taxable Value
                                         </div>
@@ -203,20 +203,20 @@ export function ReverseGstCalculator() {
                                         </div>
                                     </div>
                                     {/* Tax breakdown */}
-                                    <div className="divide-y divide-amber-100 bg-amber-50/30">
+                                    <div className="divide-y divide-amber-100 bg-amber-50/30 dark:divide-amber-900/40 dark:bg-amber-950/20">
                                         <div className="flex items-center justify-between px-4 py-2.5">
-                                            <span className="text-xs font-medium text-slate-500">
+                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
                                                 CGST @ {cgstPercent}%
                                             </span>
-                                            <span className="font-mono text-sm font-semibold text-slate-700">
+                                            <span className="font-mono text-sm font-semibold text-slate-700 dark:text-slate-300">
                                                 ₹ {formatCurrency(results.cgstAmount)}
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between px-4 py-2.5">
-                                            <span className="text-xs font-medium text-slate-500">
+                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
                                                 SGST @ {sgstPercent}%
                                             </span>
-                                            <span className="font-mono text-sm font-semibold text-slate-700">
+                                            <span className="font-mono text-sm font-semibold text-slate-700 dark:text-slate-300">
                                                 ₹ {formatCurrency(results.sgstAmount)}
                                             </span>
                                         </div>

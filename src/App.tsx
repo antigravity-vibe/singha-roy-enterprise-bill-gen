@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import type { BillItem, CustomerDetails, BusinessDetails, BillData } from "./types/bill";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useVersionedFormStorage } from "./hooks/useVersionedFormStorage";
@@ -16,6 +16,7 @@ import type { FieldErrors } from "./lib/pdfGenerator";
 import "./App.css";
 
 import SinghaRoyEnterpriseLogo from "./assets/singhaRoyEnterpriseLogo.svg?react";
+import { Github, Moon, Sun } from "lucide-react";
 
 interface FormData {
     invoiceNumber: string;
@@ -32,6 +33,19 @@ const defaultFormData: FormData = {
 };
 
 function App() {
+    // Theme details (persisted to localStorage)
+    const [isDarkMode, setIsDarkMode] = useLocalStorage<boolean>("sre-theme-dark", true);
+
+    useEffect(() => {
+        if (isDarkMode) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, [isDarkMode]);
+
+    const toggleTheme = () => setIsDarkMode((prev) => !prev);
+
     // Business details (persisted to localStorage)
     const [businessDetails] = useLocalStorage<BusinessDetails>(STORAGE_KEY_BUSINESS_DETAILS, DEFAULT_BUSINESS_DETAILS);
 
@@ -117,19 +131,38 @@ function App() {
     };
 
     return (
-        <div className="min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100">
-            <div className="container mx-auto max-w-6xl px-4 py-10">
-                {/* Page Header */}
-                <header className="mb-10 text-center">
-                    <SinghaRoyEnterpriseLogo className="mx-auto mb-4 h-20 w-20 drop-shadow-md" />
-                    <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-slate-900">Bill Generator</h1>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-emerald-50 to-teal-50 px-4 py-1.5 text-sm font-medium text-emerald-700 ring-1 ring-emerald-200/60">
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        GST-Compliant Invoices
-                    </span>
-                </header>
-                <hr className="mb-8 border-slate-200/60" />
+        <div className="min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100 pt-16 transition-colors duration-300 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+            {/* Fixed Page Header */}
+            <header className="fixed top-0 right-0 left-0 z-50 flex h-16 w-full items-center justify-between bg-white/90 px-4 shadow-sm backdrop-blur-md ring-1 ring-slate-900/5 select-none transition-colors duration-300 dark:bg-slate-950/90 dark:ring-slate-100/10 sm:px-6">
+                <div className="flex items-center gap-3">
+                    <SinghaRoyEnterpriseLogo className="h-10 w-10 shrink-0 drop-shadow-sm sm:h-11 sm:w-11" />
+                    <h1 className="text-lg font-extrabold tracking-tight text-slate-900 transition-colors duration-300 dark:text-slate-100 sm:text-xl lg:text-2xl">
+                        SINGHA ROY ENTERPRISE INVOICE GENERATOR
+                    </h1>
+                </div>
+                <div className="flex items-center gap-2">
+                    {packageJSON.repository?.url && (
+                        <a
+                            href={packageJSON.repository.url.replace(/\.git$/, "")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                            title="GitHub Repository"
+                        >
+                            <Github className="h-5 w-5" />
+                        </a>
+                    )}
+                    <button
+                        onClick={toggleTheme}
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                        title="Toggle Theme"
+                    >
+                        {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                    </button>
+                </div>
+            </header>
 
+            <div className="container mx-auto max-w-6xl px-4 py-8">
                 {/* ① Business Details */}
                 <BusinessDetailsForm />
 

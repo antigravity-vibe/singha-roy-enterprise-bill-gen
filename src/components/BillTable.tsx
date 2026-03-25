@@ -162,22 +162,22 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                 <TableRow
                                     key={item.id}
                                     className={cn(
-                                        "transition-colors hover:bg-slate-50/80",
-                                        index % 2 === 1 && "bg-slate-25",
+                                        "transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/50",
+                                        index % 2 === 1 && "bg-slate-50/50 dark:bg-slate-800/30",
                                     )}
                                 >
                                     <TableCell className="bill-item-cell relative" data-row-number={index + 1}>
                                         <Input
                                             value={items[index].description}
                                             onChange={(e) => updateItem(index, "description", e.target.value)}
-                                            className="w-full border-0 bg-transparent px-0 py-1 shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
+                                            className="w-full border-0 bg-transparent px-0 py-1 shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-0"
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <Input
                                             value={items[index].hsnSac}
                                             onChange={(e) => updateItem(index, "hsnSac", e.target.value)}
-                                            className="w-full border-0 bg-transparent px-0 py-1 text-center shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-center shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-0"
                                         />
                                     </TableCell>
                                     <TableCell>
@@ -185,7 +185,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].quantity ?? ""}
                                             onChange={(e) => handleNumberInput(index, "quantity", e.target.value)}
-                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-0"
                                             min={0}
                                         />
                                     </TableCell>
@@ -194,7 +194,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].rate ?? ""}
                                             onChange={(e) => handleNumberInput(index, "rate", e.target.value)}
-                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-0"
                                             min={0}
                                             step={0.01}
                                         />
@@ -207,7 +207,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].cgstPercent ?? ""}
                                             onChange={(e) => handleNumberInput(index, "cgstPercent", e.target.value)}
-                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-0"
                                             min={0}
                                             max={100}
                                             step={0.5}
@@ -221,7 +221,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].sgstPercent ?? ""}
                                             onChange={(e) => handleNumberInput(index, "sgstPercent", e.target.value)}
-                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 dark:focus-visible:ring-slate-600 focus-visible:ring-offset-0"
                                             min={0}
                                             max={100}
                                             step={0.5}

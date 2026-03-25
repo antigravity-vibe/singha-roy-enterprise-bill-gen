@@ -84,7 +84,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     <div className="md:col-span-2">
                         <Label htmlFor="customerAddress2">
                             Address Line 2{" "}
-                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                                 OPTIONAL
                             </span>
                         </Label>
@@ -113,7 +113,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     <div>
                         <Label htmlFor="customerPin">
                             PIN Code{" "}
-                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                                 OPTIONAL
                             </span>
                         </Label>
@@ -156,7 +156,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     <div>
                         <Label htmlFor="customerPhone">
                             Phone{" "}
-                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                                 OPTIONAL
                             </span>
                         </Label>
@@ -172,7 +172,7 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                     <div>
                         <Label htmlFor="customerGst">
                             GST Number{" "}
-                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400">
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                                 OPTIONAL
                             </span>
                         </Label>

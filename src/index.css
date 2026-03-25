@@ -4,6 +4,7 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 /* @import "react-day-picker/style.css"; */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
     font-family: "MonoLisa";
@@ -73,19 +74,19 @@
 
     .dark {
         --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
+        --foreground: 215 20% 85%;
         --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
+        --card-foreground: 215 20% 85%;
         --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
+        --popover-foreground: 215 20% 85%;
         --primary: 210 40% 98%;
         --primary-foreground: 222.2 47.4% 11.2%;
         --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary-foreground: 215 20% 85%;
         --muted: 217.2 32.6% 17.5%;
         --muted-foreground: 215 20.2% 65.1%;
         --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+        --accent-foreground: 215 20% 85%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 210 40% 98%;
         --border: 217.2 32.6% 17.5%;

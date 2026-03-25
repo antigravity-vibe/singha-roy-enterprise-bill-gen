@@ -50,12 +50,12 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
             <Card className="relative mb-10 transition-shadow duration-200 hover:shadow-md">
                 <SectionLabel title="Business Details" />
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <CardTitle className="text-lg font-semibold text-slate-800">{businessDetails.name}</CardTitle>
+                    <CardTitle className="text-lg font-semibold text-slate-800 dark:text-slate-200">{businessDetails.name}</CardTitle>
                     <Button
                         variant="outline"
                         size="sm"
                         onClick={handleOpen}
-                        className="gap-1.5 text-slate-500 hover:text-slate-700"
+                        className="gap-1.5 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
                     >
                         <svg
                             className="h-3.5 w-3.5"
@@ -73,7 +73,7 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
                         Edit
                     </Button>
                 </CardHeader>
-                <CardContent className="text-sm text-slate-600">
+                <CardContent className="text-sm text-slate-600 dark:text-slate-300">
                     <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2">
                         <div className="flex items-center gap-2">
                             <span className="text-slate-400">📞</span>
@@ -84,8 +84,8 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
                             <span>{businessDetails.email}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="text-slate-400">🔢</span>
-                            <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-medium text-slate-700">
+                            <span className="text-slate-400 dark:text-slate-500">🔢</span>
+                            <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                                 {businessDetails.gstNo}
                             </span>
                         </div>
