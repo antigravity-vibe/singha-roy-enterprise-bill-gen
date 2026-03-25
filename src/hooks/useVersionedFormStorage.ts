@@ -18,7 +18,11 @@ interface VersionedData<T> {
  * @param version      Schema version string — bump when the stored shape changes
  * @param defaultValue Fallback value when nothing valid is stored
  */
-export function useVersionedFormStorage<T>(key: string, version: string, defaultValue: T): [T, (value: T | ((prev: T) => T)) => void] {
+export function useVersionedFormStorage<T>(
+    key: string,
+    version: string,
+    defaultValue: T,
+): [T, (value: T | ((prev: T) => T)) => void] {
     const [value, setValue] = useState<T>(() => {
         try {
             const raw = localStorage.getItem(key);

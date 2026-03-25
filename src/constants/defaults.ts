@@ -28,7 +28,6 @@ export const STORAGE_KEY_BUSINESS_DETAILS = "singha_roy_enterprise_business_deta
  */
 export const STORAGE_KEY_FORM_DATA = "singha_roy_enterprise_form_data";
 
-
 /**
  * Default GST percentages
  */
