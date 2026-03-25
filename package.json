@@ -9,8 +9,8 @@
         "type-check": "tsc -b",
         "lint": "eslint .",
         "preview": "vite preview",
-        "format": "prettier --write '**/*.{js,ts,tsx,css,scss,json,yml,yaml}'",
-        "check-formatting": "prettier --check '**/*.{js,ts,tsx,css,scss,json,yml,yaml}'"
+        "format": "prettier --write '**/*.{js,ts,tsx,css,scss,html,json,yml,yaml}'",
+        "check-formatting": "prettier --check '**/*.{js,ts,tsx,css,scss,html,json,yml,yaml}'"
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.15",
