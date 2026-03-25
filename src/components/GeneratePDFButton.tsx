@@ -74,12 +74,12 @@ export function GeneratePDFButton({ billData, onValidationErrors }: GeneratePDFB
                 )}
             </Button>
             <Button
-                onClick={() => handleGenerate("return-note")}
+                onClick={() => handleGenerate("credit-note")}
                 disabled={isGenerating}
                 size="lg"
                 className="cursor-pointer gap-2 rounded-xl bg-linear-to-r from-slate-500 to-slate-600 py-7 text-lg font-semibold shadow-lg transition-all duration-200 hover:scale-[1.01] hover:from-slate-400 hover:to-slate-500 hover:shadow-xl active:scale-[0.99]"
             >
-                {generatingType === "return-note" ? (
+                {generatingType === "credit-note" ? (
                     <>
                         <SpinnerIcon />
                         Generating…
@@ -87,7 +87,7 @@ export function GeneratePDFButton({ billData, onValidationErrors }: GeneratePDFB
                 ) : (
                     <>
                         <DownloadIcon />
-                        Return Note
+                        Credit Note
                     </>
                 )}
             </Button>

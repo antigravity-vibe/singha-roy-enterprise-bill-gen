@@ -3,7 +3,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import type { TDocumentDefinitions, Content, TableCell } from "pdfmake/interfaces";
 import type { BillData } from "../types/bill";
 
-export type DocumentType = "invoice" | "return-note";
+export type DocumentType = "invoice" | "credit-note";
 import { formatAmountInWords } from "./numberToWords";
 import SinghaRoyEnterpriseLogoRaw from "@/assets/singhaRoyEnterpriseLogo.svg?raw";
 
@@ -148,8 +148,8 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
                     stack: [
                         {
                             text:
-                                documentType === "return-note"
-                                    ? `RETURN NOTE #${invoiceNumber}`
+                                documentType === "credit-note"
+                                    ? `CREDIT NOTE #${invoiceNumber}`
                                     : `INVOICE #${invoiceNumber}`,
                             style: "invoiceNumber",
                             alignment: "right",
@@ -302,7 +302,7 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
  */
 export function generatePDF(billData: BillData, documentType: DocumentType = "invoice"): void {
     const docDefinition = generateDocumentDefinition(billData, documentType);
-    const prefix = documentType === "return-note" ? "Return_Note" : "Invoice";
+    const prefix = documentType === "credit-note" ? "Credit_Note" : "Invoice";
     const fileName = `${prefix}_${billData.invoiceNumber || "draft"}.pdf`;
 
     pdfMake.createPdf(docDefinition).download(fileName);
