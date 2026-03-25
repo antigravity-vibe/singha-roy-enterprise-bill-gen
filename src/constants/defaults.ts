@@ -24,6 +24,12 @@ export const DEFAULT_BUSINESS_DETAILS: BusinessDetails = {
 export const STORAGE_KEY_BUSINESS_DETAILS = "singha_roy_enterprise_business_details";
 
 /**
+ * LocalStorage key for persisting form data (invoice, customer, items)
+ */
+export const STORAGE_KEY_FORM_DATA = "singha_roy_enterprise_form_data";
+
+
+/**
  * Default GST percentages
  */
 export const DEFAULT_CGST_PERCENT = 9;

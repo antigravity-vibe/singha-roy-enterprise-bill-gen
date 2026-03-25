@@ -1,8 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { BillItem, CustomerDetails, BusinessDetails, BillData } from "./types/bill";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useVersionedFormStorage } from "./hooks/useVersionedFormStorage";
 import { useBillCalculations } from "./hooks/useBillCalculations";
-import { DEFAULT_BUSINESS_DETAILS, STORAGE_KEY_BUSINESS_DETAILS } from "./constants/defaults";
+import { DEFAULT_BUSINESS_DETAILS, STORAGE_KEY_BUSINESS_DETAILS, STORAGE_KEY_FORM_DATA } from "./constants/defaults";
+import { packageJSON } from "./utils/packageJSON";
 import { BusinessDetailsForm } from "./components/BusinessDetailsForm";
 import { CustomerDetailsForm, emptyCustomerDetails } from "./components/CustomerDetailsForm";
 import { InvoiceHeader, getTodayDateString } from "./components/InvoiceHeader";
@@ -15,19 +17,50 @@ import "./App.css";
 
 import SinghaRoyEnterpriseLogo from "./assets/singhaRoyEnterpriseLogo.svg?react";
 
+interface FormData {
+    invoiceNumber: string;
+    dateString: string;
+    customerDetails: CustomerDetails;
+    items: BillItem[];
+}
+
+const defaultFormData: FormData = {
+    invoiceNumber: "",
+    dateString: getTodayDateString(),
+    customerDetails: emptyCustomerDetails,
+    items: [createEmptyItem()],
+};
+
 function App() {
     // Business details (persisted to localStorage)
     const [businessDetails] = useLocalStorage<BusinessDetails>(STORAGE_KEY_BUSINESS_DETAILS, DEFAULT_BUSINESS_DETAILS);
 
-    // Invoice metadata
-    const [invoiceNumber, setInvoiceNumber] = useState("");
-    const [dateString, setDateString] = useState(getTodayDateString());
+    // All form fields (persisted to localStorage with version gating)
+    const [formData, setFormData] = useVersionedFormStorage<FormData>(
+        STORAGE_KEY_FORM_DATA,
+        packageJSON.version,
+        defaultFormData,
+    );
 
-    // Customer details
-    const [customerDetails, setCustomerDetails] = useState<CustomerDetails>(emptyCustomerDetails);
+    // Convenience accessors
+    const { invoiceNumber, dateString, customerDetails, items } = formData;
 
-    // Bill items
-    const [items, setItems] = useState<BillItem[]>([createEmptyItem()]);
+    const setInvoiceNumber = useCallback(
+        (value: string) => setFormData((prev) => ({ ...prev, invoiceNumber: value })),
+        [setFormData],
+    );
+    const setDateString = useCallback(
+        (value: string) => setFormData((prev) => ({ ...prev, dateString: value })),
+        [setFormData],
+    );
+    const setCustomerDetails = useCallback(
+        (value: CustomerDetails) => setFormData((prev) => ({ ...prev, customerDetails: value })),
+        [setFormData],
+    );
+    const setItems = useCallback(
+        (value: BillItem[]) => setFormData((prev) => ({ ...prev, items: value })),
+        [setFormData],
+    );
 
     // Validation errors
     const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
