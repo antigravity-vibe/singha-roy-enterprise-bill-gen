@@ -2,6 +2,8 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import type { TDocumentDefinitions, Content, TableCell } from "pdfmake/interfaces";
 import type { BillData } from "../types/bill";
+
+export type DocumentType = "invoice" | "return-note";
 import { formatAmountInWords } from "./numberToWords";
 import SinghaRoyEnterpriseLogoRaw from "@/assets/singhaRoyEnterpriseLogo.svg?raw";
 
@@ -36,7 +38,7 @@ function formatNumber(value: number): string {
 /**
  * Generate PDF document definition for pdfmake
  */
-function generateDocumentDefinition(billData: BillData): TDocumentDefinitions {
+function generateDocumentDefinition(billData: BillData, documentType: DocumentType): TDocumentDefinitions {
     const { businessDetails, customerDetails, items, totals, invoiceNumber, date } = billData;
 
     // Filter out empty items for PDF
@@ -145,7 +147,10 @@ function generateDocumentDefinition(billData: BillData): TDocumentDefinitions {
                     width: "auto",
                     stack: [
                         {
-                            text: `INVOICE NO: ${invoiceNumber}`,
+                            text:
+                                documentType === "return-note"
+                                    ? `RETURN NOTE #${invoiceNumber}`
+                                    : `INVOICE #${invoiceNumber}`,
                             style: "invoiceNumber",
                             alignment: "right",
                         },
@@ -295,9 +300,10 @@ function generateDocumentDefinition(billData: BillData): TDocumentDefinitions {
 /**
  * Generate and download a PDF invoice
  */
-export function generatePDF(billData: BillData): void {
-    const docDefinition = generateDocumentDefinition(billData);
-    const fileName = `Invoice_${billData.invoiceNumber || "draft"}.pdf`;
+export function generatePDF(billData: BillData, documentType: DocumentType = "invoice"): void {
+    const docDefinition = generateDocumentDefinition(billData, documentType);
+    const prefix = documentType === "return-note" ? "Return_Note" : "Invoice";
+    const fileName = `${prefix}_${billData.invoiceNumber || "draft"}.pdf`;
 
     pdfMake.createPdf(docDefinition).download(fileName);
 }
