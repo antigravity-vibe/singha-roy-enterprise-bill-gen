@@ -1,12 +1,7 @@
 name: Build and deploy to 'Github Pages'
+
 on:
-    push:
-        branches:
-            - main
-        paths-ignore:
-            - "**/*.md"
-            - ".vscode/**"
-            - ".gitignore"
+    workflow_call:
 
 jobs:
     build_and_upload_artifacts:
