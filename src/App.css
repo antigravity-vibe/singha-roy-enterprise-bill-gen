@@ -54,4 +54,19 @@
     .overflow-x-auto::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
     }
+
+    /* Serial numbers outside the bill items table */
+    .bill-item-cell::before {
+        content: attr(data-row-number);
+        position: absolute;
+        left: -2.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.5rem;
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: #94a3b8;
+        pointer-events: none;
+    }
 }

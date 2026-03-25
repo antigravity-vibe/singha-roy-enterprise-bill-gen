@@ -121,23 +121,20 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                 <div className="px-6 pt-5 text-sm font-medium text-red-600">⚠ At least one bill item is required</div>
             )}
             <CardContent className="p-0">
-                <div className="overflow-x-auto">
-                    <Table>
+                <div className="overflow-visible">
+                    <Table wrapperClassName="overflow-visible">
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="w-[50px] text-center text-[11px] font-semibold tracking-wider uppercase">
-                                    S.No
-                                </TableHead>
-                                <TableHead className="min-w-[180px] text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="min-w-[180px] text-left text-[11px] font-semibold tracking-wider uppercase">
                                     Description of Goods
                                 </TableHead>
-                                <TableHead className="w-[100px] text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-[100px] text-center text-[11px] font-semibold tracking-wider uppercase">
                                     HSN/SAC
                                 </TableHead>
                                 <TableHead className="w-[80px] text-right text-[11px] font-semibold tracking-wider uppercase">
                                     Qty
                                 </TableHead>
-                                <TableHead className="w-[100px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-[130px] text-right text-[11px] font-semibold tracking-wider uppercase">
                                     Rate
                                 </TableHead>
                                 <TableHead className="w-[120px] text-right text-[11px] font-semibold tracking-wider uppercase">
@@ -169,21 +166,18 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                         index % 2 === 1 && "bg-slate-25",
                                     )}
                                 >
-                                    <TableCell className="text-center font-medium">{index + 1}</TableCell>
-                                    <TableCell>
+                                    <TableCell className="bill-item-cell relative" data-row-number={index + 1}>
                                         <Input
                                             value={items[index].description}
                                             onChange={(e) => updateItem(index, "description", e.target.value)}
-                                            placeholder="Item name"
-                                            className="h-8 border-0 shadow-none focus-visible:ring-1"
+                                            className="w-full border-0 bg-transparent px-0 py-1 shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <Input
                                             value={items[index].hsnSac}
                                             onChange={(e) => updateItem(index, "hsnSac", e.target.value)}
-                                            placeholder="HSN"
-                                            className="h-8 border-0 shadow-none focus-visible:ring-1"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-center shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
                                         />
                                     </TableCell>
                                     <TableCell>
@@ -191,8 +185,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].quantity ?? ""}
                                             onChange={(e) => handleNumberInput(index, "quantity", e.target.value)}
-                                            placeholder="0"
-                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
                                             min={0}
                                         />
                                     </TableCell>
@@ -201,8 +194,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].rate ?? ""}
                                             onChange={(e) => handleNumberInput(index, "rate", e.target.value)}
-                                            placeholder="0.00"
-                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
                                             min={0}
                                             step={0.01}
                                         />
@@ -215,8 +207,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].cgstPercent ?? ""}
                                             onChange={(e) => handleNumberInput(index, "cgstPercent", e.target.value)}
-                                            placeholder="9"
-                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
                                             min={0}
                                             max={100}
                                             step={0.5}
@@ -230,8 +221,7 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                                             type="number"
                                             value={items[index].sgstPercent ?? ""}
                                             onChange={(e) => handleNumberInput(index, "sgstPercent", e.target.value)}
-                                            placeholder="9"
-                                            className="h-8 border-0 text-right shadow-none focus-visible:ring-1"
+                                            className="w-full border-0 bg-transparent px-0 py-1 text-right shadow-none focus-visible:ring-1 focus-visible:ring-slate-300 focus-visible:ring-offset-0"
                                             min={0}
                                             max={100}
                                             step={0.5}
@@ -248,10 +238,10 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                         </TableBody>
                         <TableFooter>
                             <TableRow className="bg-linear-to-r from-slate-800 to-slate-700">
-                                <TableCell colSpan={2} className="text-left font-semibold text-white/80">
+                                <TableCell colSpan={1} className="text-left font-semibold text-white/80">
                                     Grand Total
                                 </TableCell>
-                                <TableCell colSpan={11} className="text-right font-mono text-lg font-bold text-white">
+                                <TableCell colSpan={9} className="text-right font-mono text-lg font-bold text-white">
                                     ₹ {formatNumber(grandTotal)}
                                 </TableCell>
                             </TableRow>
