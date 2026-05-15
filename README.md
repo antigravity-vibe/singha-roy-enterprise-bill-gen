@@ -70,10 +70,14 @@ bun lint    # ESLint
 
 ## 📂 Project Structure
 
-- `src/components`: Reusable UI components (shadcn/ui).
-- `src/features`: Core billing logic and state management.
-- `src/hooks`: Custom React hooks for calculations.
-- `src/utils`: Helper functions for currency formatting and tax calculations.
+- `src/components/`: Application-level components (forms, tables, summary).
+- `src/components/ui/`: Primitive UI components from shadcn/ui.
+- `src/hooks/`: Custom React hooks (bill calculations, localStorage persistence).
+- `src/lib/`: Core utilities — PDF generation, number-to-words conversion, `cn()` helper.
+- `src/types/`: TypeScript type definitions for the billing domain.
+- `src/constants/`: Default business details, GST percentages, Indian states list.
+- `src/utils/`: Thin re-export of `package.json` for runtime access.
+- `src/assets/`: SVG logo and bundled fonts (MonoLisa).
 
 ## 📄 License
 
