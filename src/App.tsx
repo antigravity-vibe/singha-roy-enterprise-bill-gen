@@ -231,6 +231,9 @@ function App() {
                     </button>
 
                     {/* Separator */}
+                    <span className="hidden text-xs font-medium text-slate-400 sm:inline dark:text-slate-500">
+                        v{packageJSON.version}
+                    </span>
                     <div className="mx-0.5 h-5 w-px bg-slate-200 dark:bg-slate-700" />
 
                     {packageJSON.repository?.url && (
