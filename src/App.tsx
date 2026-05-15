@@ -195,7 +195,7 @@ function App() {
                     {/* Export/Import Status Toast */}
                     {exportImportStatus && (
                         <div
-                            className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium shadow-sm transition-all animate-in fade-in slide-in-from-top-1 ${
+                            className={`animate-in fade-in slide-in-from-top-1 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium shadow-sm transition-all ${
                                 exportImportStatus.type === "success"
                                     ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300"
                                     : "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300"
