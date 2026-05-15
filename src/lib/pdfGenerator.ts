@@ -35,6 +35,15 @@ function formatNumber(value: number): string {
     });
 }
 
+function hardBreakText(text: string, maxChars: number = 20): string {
+    return text
+        .split(" ")
+        .map((word) =>
+            word.length > maxChars ? word.match(new RegExp(`.{1,${maxChars}}`, "g"))!.join("-\u200B") : word,
+        )
+        .join(" ");
+}
+
 /**
  * Generate PDF document definition for pdfmake
  */
@@ -82,7 +91,7 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
     // Table body rows
     const tableBody: TableCell[][] = filledItems.map((item, index) => [
         { text: (index + 1).toString(), alignment: "center" },
-        { text: item.description },
+        { text: hardBreakText(item.description) },
         { text: item.hsnSac, alignment: "center" },
         { text: item.quantity?.toString() || "0", alignment: "right" },
         { text: formatNumber(item.rate || 0), alignment: "right" },
@@ -213,7 +222,7 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
         {
             table: {
                 headerRows: 1,
-                widths: [25, "*", 50, 35, 55, 65, 55, 55, 65],
+                widths: [20, "*", 40, 25, 50, 55, 50, 50, 55],
                 body: [tableHeader, ...tableBody, totalsRow],
             },
             layout: {
