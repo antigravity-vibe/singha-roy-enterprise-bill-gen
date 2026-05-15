@@ -1,4 +1,4 @@
-name: check_formatting
+name: Check formatting
 
 on:
     workflow_call:
@@ -17,4 +17,4 @@ jobs:
               run: bun install
 
             - name: Check formatting
-              run: bun run check-formatting
+              run: bun run format:check
