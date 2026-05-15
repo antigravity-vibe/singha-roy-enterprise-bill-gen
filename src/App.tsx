@@ -16,7 +16,7 @@ import type { FieldErrors } from "./lib/pdfGenerator";
 import "./App.css";
 
 import SinghaRoyEnterpriseLogo from "./assets/singhaRoyEnterpriseLogo.svg?react";
-import { Github, Moon, Sun, Download, Upload, Check, X } from "lucide-react";
+import { Github, Moon, Sun, Download, Upload, Check, X, Trash2 } from "lucide-react";
 
 interface FormData {
     invoiceNumber: string;
@@ -63,7 +63,7 @@ function App() {
     const [businessDetails] = useLocalStorage<BusinessDetails>(STORAGE_KEY_BUSINESS_DETAILS, DEFAULT_BUSINESS_DETAILS);
 
     // All form fields (persisted to localStorage with version gating)
-    const [formData, setFormData] = useVersionedFormStorage<FormData>(
+    const [formData, setFormData, clearFormStorage] = useVersionedFormStorage<FormData>(
         STORAGE_KEY_FORM_DATA,
         packageJSON.version,
         defaultFormData,
@@ -91,6 +91,23 @@ function App() {
 
     // Validation errors
     const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+    // Clear form — two-step confirmation (arm → confirm)
+    const [clearArmed, setClearArmed] = useState(false);
+    const clearArmTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleClearForm = useCallback(() => {
+        if (!clearArmed) {
+            setClearArmed(true);
+            clearArmTimeoutRef.current = setTimeout(() => setClearArmed(false), 3000);
+            return;
+        }
+        // Confirmed
+        if (clearArmTimeoutRef.current) clearTimeout(clearArmTimeoutRef.current);
+        setClearArmed(false);
+        clearFormStorage();
+        setFieldErrors({});
+    }, [clearArmed, clearFormStorage]);
 
     // Calculate all derived values
     const { calculatedItems, totals } = useBillCalculations(items);
@@ -228,6 +245,21 @@ function App() {
                         id="import-state-btn"
                     >
                         <Upload className="h-5 w-5" />
+                    </button>
+
+                    {/* Clear Form */}
+                    <button
+                        onClick={handleClearForm}
+                        className={`flex h-9 items-center justify-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-all ${
+                            clearArmed
+                                ? "bg-red-100 text-red-700 ring-1 ring-red-300 hover:bg-red-200 dark:bg-red-900/40 dark:text-red-300 dark:ring-red-700 dark:hover:bg-red-900/70"
+                                : "text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                        }`}
+                        title={clearArmed ? "Click again to confirm reset" : "Clear form"}
+                        id="clear-form-btn"
+                    >
+                        <Trash2 className="h-4 w-4" />
+                        {clearArmed && <span className="hidden sm:inline">Confirm?</span>}
                     </button>
 
                     {/* Separator */}

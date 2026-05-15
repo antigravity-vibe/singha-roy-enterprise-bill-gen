@@ -1,20 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 
-interface VersionedData<T> {
-    version: string;
-    data: T;
-}
-
 /**
- * A hook that persists state to localStorage with version-gated serialization.
+ * A hook that persists state to localStorage with version-keyed storage.
  *
- * On init the hook reads localStorage:
- *  - If the stored version matches `version`, state is hydrated from the saved data.
- *  - Otherwise (missing, corrupt, or outdated) the key is deleted and `defaultValue` is used.
+ * The version is embedded in the localStorage key itself (e.g. "my_key_v1.2.3"),
+ * so data from different versions coexist without interfering. On init, stale
+ * keys (same base key, different version suffix) are pruned automatically.
  *
  * Writes are debounced (500 ms) so rapid edits don't thrash localStorage.
  *
- * @param key          localStorage key
+ * @param key          Base localStorage key (version suffix is appended automatically)
  * @param version      Schema version string — bump when the stored shape changes
  * @param defaultValue Fallback value when nothing valid is stored
  */
@@ -22,21 +17,31 @@ export function useVersionedFormStorage<T>(
     key: string,
     version: string,
     defaultValue: T,
-): [T, (value: T | ((prev: T) => T)) => void] {
+): [T, (value: T | ((prev: T) => T)) => void, () => void] {
+    const versionedKey = `${key}_v${version}`;
+
     const [value, setValue] = useState<T>(() => {
+        // Prune stale keys from other versions
         try {
-            const raw = localStorage.getItem(key);
-            if (raw) {
-                const parsed: VersionedData<T> = JSON.parse(raw);
-                if (parsed.version === version) {
-                    return parsed.data;
+            const prefix = `${key}_v`;
+            for (let i = localStorage.length - 1; i >= 0; i--) {
+                const k = localStorage.key(i);
+                if (k && k.startsWith(prefix) && k !== versionedKey) {
+                    localStorage.removeItem(k);
                 }
-                // Version mismatch — discard stale data
-                localStorage.removeItem(key);
+            }
+        } catch {
+            // Ignore storage enumeration errors
+        }
+
+        try {
+            const raw = localStorage.getItem(versionedKey);
+            if (raw) {
+                return JSON.parse(raw) as T;
             }
         } catch (error) {
-            console.warn(`Error reading localStorage key "${key}":`, error);
-            localStorage.removeItem(key);
+            console.warn(`Error reading localStorage key "${versionedKey}":`, error);
+            localStorage.removeItem(versionedKey);
         }
         return defaultValue;
     });
@@ -58,10 +63,9 @@ export function useVersionedFormStorage<T>(
 
         timerRef.current = setTimeout(() => {
             try {
-                const wrapped: VersionedData<T> = { version, data: value };
-                localStorage.setItem(key, JSON.stringify(wrapped));
+                localStorage.setItem(versionedKey, JSON.stringify(value));
             } catch (error) {
-                console.warn(`Error writing to localStorage key "${key}":`, error);
+                console.warn(`Error writing to localStorage key "${versionedKey}":`, error);
             }
         }, 500);
 
@@ -70,7 +74,17 @@ export function useVersionedFormStorage<T>(
                 clearTimeout(timerRef.current);
             }
         };
-    }, [value, key, version]);
+    }, [value, versionedKey]);
 
-    return [value, setValue];
+    /** Clears the stored value and resets state to defaultValue */
+    const clearStorage = () => {
+        try {
+            localStorage.removeItem(versionedKey);
+        } catch {
+            // Ignore
+        }
+        setValue(defaultValue);
+    };
+
+    return [value, setValue, clearStorage];
 }
