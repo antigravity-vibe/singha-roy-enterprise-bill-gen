@@ -182,7 +182,6 @@ export function CustomerDetailsForm({ customerDetails, onChange, errors = {} }: 
                             onChange={(e) => updateField("gstNo", e.target.value)}
                             placeholder="15-character GSTIN"
                             maxLength={15}
-                            className="font-mono"
                         />
                     </div>
                 </div>

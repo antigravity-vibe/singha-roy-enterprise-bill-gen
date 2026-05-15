@@ -66,10 +66,7 @@ export function InvoiceHeader({
                                 value={invoiceNumber}
                                 onChange={(e) => onInvoiceNumberChange(e.target.value)}
                                 placeholder="Enter invoice number"
-                                className={cn(
-                                    "pl-7 font-mono",
-                                    hasInvoiceError && "border-red-500 focus-visible:ring-red-500",
-                                )}
+                                className={cn("pl-7", hasInvoiceError && "border-red-500 focus-visible:ring-red-500")}
                             />
                         </div>
                         {hasInvoiceError && <p className="mt-1 text-sm text-red-600">{errors.invoiceNumber}</p>}

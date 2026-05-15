@@ -76,7 +76,7 @@ export function BusinessDetailsForm({ onDetailsChange }: BusinessDetailsFormProp
                         </div>
                         <div className="flex items-center gap-2">
                             <Hash className="h-4 w-4 text-slate-400 dark:text-slate-500" />
-                            <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                            <span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                                 GST: {businessDetails.gstNo}
                             </span>
                         </div>
