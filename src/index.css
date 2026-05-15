@@ -6,19 +6,11 @@
 /* @import "react-day-picker/style.css"; */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@font-face {
-    font-family: "MonoLisa";
-    src:
-        url("./assets/fonts/monolisa/MonoLisa-normal.woff2") format("woff2"),
-        url("./assets/fonts/monolisa/MonoLisa-normal.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+/* Inter loaded from Google Fonts — see index.html */
 
 @theme {
-    /* Global font */
-    --font-sans: "MonoLisa", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    /* Global fonts */
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
     /* Map CSS variables to Tailwind colors */
     --color-background: hsl(var(--background));
