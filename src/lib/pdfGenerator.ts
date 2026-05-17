@@ -247,12 +247,47 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
             margin: [0, 0, 0, 40],
         },
 
-        // Footer with signature
+        // Footer with bank details and signature
         {
             columns: [
-                { width: "*", text: "" },
+                // Left: Bank Details
                 {
                     width: "auto",
+                    stack: [
+                        { text: "Bank Details:", bold: true, fontSize: 9, margin: [0, 0, 0, 4] },
+                        {
+                            table: {
+                                widths: ["auto", "auto", "auto"],
+                                body: [
+                                    [
+                                        { text: "Bank Name", fontSize: 9 },
+                                        { text: ":", fontSize: 9 },
+                                        { text: "Indian Overseas Bank", fontSize: 9 },
+                                    ],
+                                    [
+                                        { text: "Banking Name", fontSize: 9 },
+                                        { text: ":", fontSize: 9 },
+                                        { text: "SINGHA ROY ENTERPRISE", fontSize: 9 },
+                                    ],
+                                    [
+                                        { text: "A/c No.", fontSize: 9 },
+                                        { text: ":", fontSize: 9 },
+                                        { text: "324502000000147", fontSize: 9 },
+                                    ],
+                                    [
+                                        { text: "Branch & IFSC Code", fontSize: 9 },
+                                        { text: ":", fontSize: 9 },
+                                        { text: "BALURGHAT & IOBA0003245", fontSize: 9 },
+                                    ],
+                                ],
+                            },
+                            layout: "noBorders",
+                        },
+                    ],
+                },
+                // Right: Signature
+                {
+                    width: "*",
                     stack: [
                         {
                             text: `For - ${businessDetails.name}`,
