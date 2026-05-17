@@ -125,34 +125,34 @@ export function BillTable({ items, calculatedItems, grandTotal, onItemsChange, h
                     <Table wrapperClassName="overflow-visible">
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="min-w-[180px] text-left text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="min-w-45 text-left text-[11px] font-semibold tracking-wider uppercase">
                                     Description of Goods
                                 </TableHead>
-                                <TableHead className="w-[100px] text-center text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-25 text-center text-[11px] font-semibold tracking-wider uppercase">
                                     HSN/SAC
                                 </TableHead>
-                                <TableHead className="w-[80px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-20 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     Qty
                                 </TableHead>
-                                <TableHead className="w-[130px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-32.5 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     Rate
                                 </TableHead>
-                                <TableHead className="w-[120px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-30 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     Taxable Val.
                                 </TableHead>
-                                <TableHead className="w-[70px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-17.5 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     CGST %
                                 </TableHead>
-                                <TableHead className="w-[100px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-25 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     CGST Amt
                                 </TableHead>
-                                <TableHead className="w-[70px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-17.5 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     SGST %
                                 </TableHead>
-                                <TableHead className="w-[100px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-25 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     SGST Amt
                                 </TableHead>
-                                <TableHead className="w-[120px] text-right text-[11px] font-semibold tracking-wider uppercase">
+                                <TableHead className="w-30 text-right text-[11px] font-semibold tracking-wider uppercase">
                                     Amount
                                 </TableHead>
                             </TableRow>
