@@ -186,7 +186,7 @@ function App() {
     }, [setFormData]);
 
     return (
-        <div className="min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100 pt-16 transition-colors duration-300 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div className="min-h-screen scroll-smooth bg-linear-to-br from-slate-50 via-white to-slate-100 pt-16 transition-colors duration-300 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
             {/* Fixed Page Header */}
             <Header
                 isDarkMode={isDarkMode}
