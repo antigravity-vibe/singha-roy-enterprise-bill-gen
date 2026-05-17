@@ -77,12 +77,12 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
 
     // Table header
     const tableHeader: TableCell[] = [
-        { text: "S.No", style: "tableHeader", alignment: "center" },
-        { text: "Description of Goods", style: "tableHeader" },
+        { text: "Num", style: "tableHeader", alignment: "center" },
+        { text: "Description of goods", style: "tableHeader" },
         { text: "HSN/SAC", style: "tableHeader", alignment: "center" },
         { text: "Qty", style: "tableHeader", alignment: "right" },
         { text: "Rate", style: "tableHeader", alignment: "right" },
-        { text: "Taxable Value", style: "tableHeader", alignment: "right" },
+        { text: "Taxable value", style: "tableHeader", alignment: "right" },
         { text: "CGST", style: "tableHeader", alignment: "right" },
         { text: "SGST", style: "tableHeader", alignment: "right" },
         { text: "Amount", style: "tableHeader", alignment: "right" },
