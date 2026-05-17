@@ -77,7 +77,7 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
 
     // Table header
     const tableHeader: TableCell[] = [
-        { text: "Num", style: "tableHeader", alignment: "center" },
+        { text: "S.No.", style: "tableHeader", alignment: "center" },
         { text: "Description of goods", style: "tableHeader" },
         { text: "HSN/SAC", style: "tableHeader", alignment: "center" },
         { text: "Qty", style: "tableHeader", alignment: "right" },
