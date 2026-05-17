@@ -222,7 +222,7 @@ function generateDocumentDefinition(billData: BillData, documentType: DocumentTy
         {
             table: {
                 headerRows: 1,
-                widths: [20, "*", 40, 25, 50, 55, 50, 50, 55],
+                widths: [20, "*", 45, 20, 50, 55, 40, 40, 55],
                 body: [tableHeader, ...tableBody, totalsRow],
             },
             layout: {
