@@ -22,9 +22,13 @@ jobs:
         needs: lint
         uses: ./.github/workflows/type_check.yml
 
-    build_and_deploy_to_gh_pages:
+    build_and_upload_artifacts:
         needs: type_check
-        uses: ./.github/workflows/build_and_deploy_to_gh_pages.yml
+        uses: ./.github/workflows/build_and_upload_artifacts.yml
+
+    deploy_to_github_pages:
+        needs: type_check
+        uses: ./.github/workflows/deploy_to_github_pages.yml
         permissions:
             id-token: write
             pages: write
