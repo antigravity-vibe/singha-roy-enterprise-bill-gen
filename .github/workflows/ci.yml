@@ -27,7 +27,7 @@ jobs:
         uses: ./.github/workflows/build_and_upload_artifacts.yml
 
     deploy_to_github_pages:
-        needs: type_check
+        needs: build_and_upload_artifacts
         uses: ./.github/workflows/deploy_to_github_pages.yml
         permissions:
             id-token: write
